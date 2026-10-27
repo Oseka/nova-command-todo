@@ -11,3 +11,5 @@ Plain HTML, CSS and JavaScript. Open index.html in a browser.
 - Keyboard shortcuts: N (new mission), / (search)
 - Tasks are saved in Local Storage and survive a refresh
 - Responsive layout, keyboard-accessible controls, reduced-motion support
+
+https://oseka.github.io/nova-command-todo/
