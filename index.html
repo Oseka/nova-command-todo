@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nova Command | Mission Control To-Do</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="space" aria-hidden="true"></canvas>
+<div class="app">
+  <header class="top">
+    <a class="brand" href="#">NOVA<span>COMMAND</span></a>
+    <div class="clock"><small>Stardate UTC</small><b id="clock">--:--:--</b></div>
+  </header>
+
+  <section class="hero">
+    <h1>Where will you <em>land</em> next?</h1>
+    <p>Every task is a mission. Pick a world, assign a crew, set a launch window, and bring it home.</p>
+  </section>
+
+  <section class="panel" aria-labelledby="h-dest">
+    <h2 id="h-dest"><i>01</i> Choose a destination</h2>
+    <div id="dests" class="dests"></div>
+    <p id="destInfo" class="dest-info" aria-live="polite"></p>
+  </section>
+
+  <form id="form" class="panel" autocomplete="off">
+    <h2><i>02</i> Brief the mission</h2>
+    <div class="form-grid">
+      <label class="wide">Mission objective
+        <input id="text" type="text" maxlength="80" placeholder="e.g. Finish the weather dashboard" required>
+      </label>
+      <fieldset class="wide"><legend>Assign a crew member</legend><div id="crew" class="crew"></div></fieldset>
+      <label>Threat level
+        <select id="pri"><option value="0">Routine</option><option value="1">Urgent</option><option value="2">Critical</option></select>
+      </label>
+      <label>Launch window (optional)
+        <input id="due" type="datetime-local">
+      </label>
+      <button class="launch" type="submit">Launch mission</button>
+    </div>
+    <p id="error" class="error" role="alert"></p>
+    <p class="hint">Shortcuts: <kbd>N</kbd> new mission &nbsp; <kbd>/</kbd> search</p>
+  </form>
+
+  <section class="hud" aria-label="Mission statistics">
+    <div class="stat"><b id="sTotal">0</b><span>Missions</span></div>
+    <div class="stat"><b id="sOrbit">0</b><span>In orbit</span></div>
+    <div class="stat"><b id="sLand">0</b><span>Landed</span></div>
+    <div class="ring" id="ring" style="--p:0"><b id="sPct">0%</b><span>Success rate</span></div>
+  </section>
+
+  <div class="bar">
+    <div class="filters" role="group" aria-label="Filter missions">
+      <button data-f="all" aria-pressed="true">All</button>
+      <button data-f="0" aria-pressed="false">On pad</button>
+      <button data-f="1" aria-pressed="false">In orbit</button>
+      <button data-f="2" aria-pressed="false">Landed</button>
+    </div>
+    <input id="search" type="search" placeholder="Search missions" aria-label="Search missions">
+  </div>
+
+  <ul id="list" class="missions"></ul>
+
+  <footer class="foot">
+    <button id="clearLanded" class="ghost">Archive landed</button>
+    <button id="wipe" class="ghost danger">Reset all</button>
+  </footer>
+</div>
+<div id="toast" class="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
